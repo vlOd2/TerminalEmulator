@@ -12,7 +12,7 @@ namespace TerminalEmulator
         /// <summary>
         /// The registered system commands (Cannot be registered)
         /// </summary>
-        public readonly string[] systemCommands = new string[] { "help", "exit", "reload" };
+        public readonly string[] systemCommands = new string[] { "help", "exit", "reload", "panic" };
         /// <summary>
         /// The terminal logger, used for logs
         /// </summary>
@@ -159,6 +159,7 @@ namespace TerminalEmulator
                 Console.WriteLine("help - Displays help information");
                 Console.WriteLine("exit - Quits the application");
                 Console.WriteLine("reload - Reloads all plugins");
+                Console.WriteLine("panic - Panics the program (Intended for debug usage)");
                 Console.WriteLine("");
                 Console.WriteLine("Plugin commands:");
                 Console.WriteLine("");
@@ -183,13 +184,27 @@ namespace TerminalEmulator
             // Check if the command is "exit"
             else if (systemCommand == this.systemCommands[1])
             {
-                Environment.Exit(0);
+                Program.thisProgram.shutdown();
             }
             // Check if the command is "reload"
             else if (systemCommand == this.systemCommands[2])
             {
                 Program.thisProgram.pluginManager.unloadPlugins();
                 Program.thisProgram.pluginManager.loadPlugins();
+            }
+            // Check if the command is "panic"
+            else if (systemCommand == this.systemCommands[3]) 
+            {
+                try 
+                {
+                    int patch = 0;
+                    int boost = 10 / patch;
+                }
+                catch (Exception ex) 
+                {
+                    Program.thisProgram.panic(ex.Message, ex.HResult, ex);
+                }
+                //Program.thisProgram.panic("Manually triggered panic", 000000000);
             }
             else
             {

@@ -45,6 +45,14 @@ namespace TerminalEmulator.Classes
         }
 
         /// <summary>
+        /// Function called when the program gets panicked
+        /// </summary>
+        public virtual void onPanic() 
+        {
+            return;
+        }
+
+        /// <summary>
         /// Function called when an registered command is executed
         /// </summary>
         /// <param name="cmdName">Executed command's name</param>

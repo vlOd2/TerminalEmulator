@@ -36,6 +36,10 @@ namespace TerminalEmulator.Interfaces
         /// Function called when the plugin is disabled
         /// </summary>
         void onDisable();
+        /// <summary>
+        /// Function called when the program gets panicked
+        /// </summary>
+        void onPanic();
 
         /// <summary>
         /// Function called when an registered command is executed
